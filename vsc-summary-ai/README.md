@@ -1,4 +1,4 @@
-# vsc-summary-ai README
+# About VSC Summary AI
 
 VSC Summary AI is a Visual Studio Code extension designed to enhance developers' productivity by tracking the progress of a coding project. After each coding session, it generates a concise summary of the changes made, helping developers maintain clarity and continuity across sessions.
 
