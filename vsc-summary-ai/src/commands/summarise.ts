@@ -1,5 +1,25 @@
 import * as vscode from 'vscode';
 
+import * as cp from 'child_process';
+import * as path from 'path';
+
+let flaskProcess: cp.ChildProcess | null = null;
+
+function startFlaskBackend() {
+    if (flaskProcess) return; // Already running
+
+    const scriptPath = path.join(__dirname, "..", "..", "assistant.py");
+
+    flaskProcess = cp.spawn("python", [scriptPath], {
+        cwd: path.dirname(scriptPath),
+        detached: true,
+        stdio: "ignore"
+    });
+
+    flaskProcess.unref();
+    console.log("🚀 Flask backend started.");
+}
+
 export function summarise() {
     const outputChannel = vscode.window.createOutputChannel("Repo Summary");
 
@@ -9,6 +29,8 @@ export function summarise() {
         summary?: string;
         error?: string;
       };
+
+    startFlaskBackend(); 
 
     fetch("http://127.0.0.1:5000/generate", {
         method: "POST",
