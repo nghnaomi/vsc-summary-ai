@@ -15,8 +15,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vsc-summary-ai.helloWorld",
-        "title": "Hello World"
+        "command": "vsc-summary-ai.summarise",
+        "title": "VSC Summary AI"
       }
     ]
   },
