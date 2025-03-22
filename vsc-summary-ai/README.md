@@ -4,7 +4,7 @@ VSC Summary AI is an AI designed to track the progress of a project by providing
 
 ## Features
 
-to be edited
+placeholder
 
 ## Requirements
 
