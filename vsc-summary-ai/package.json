@@ -2,7 +2,7 @@
   "name": "vsc-summary-ai",
   "displayName": "VSC Summary AI",
   "description": "An AI that generates a summary of the user's  coding progress.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "nkz",
   "engines": {
     "vscode": "^1.98.0"
