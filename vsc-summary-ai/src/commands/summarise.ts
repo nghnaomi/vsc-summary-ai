@@ -8,7 +8,7 @@ let flaskProcess: cp.ChildProcess | null = null;
 
 function startFlaskBackend() {
     if (flaskProcess) {
-        return; // Already running
+        return;
     }
 
     const scriptPath = path.join(__dirname, "..", "..", "assistant.py");
@@ -28,8 +28,7 @@ export async function summarise() {
 
     const result = await vscode.window.showInformationMessage('Welcome to VSC Summary AI',
         { modal: true },
-        'Select Repository',
-        'Exit'
+        'Select Repository'
     );
 
     if (result === 'Select Repository') {
@@ -97,8 +96,5 @@ export async function summarise() {
         .catch(error => {
             vscode.window.showErrorMessage(`Request failed: ${error.message}`);
         });
-    } else {
-        console.log('You have exited VSC Summary AI.');
-        return;
     }
 }
