@@ -1,22 +1,16 @@
  Developer Activity Summary:
 
 - ✅ Completed Work:
-  - Iteration on the pose detection functionality for the "AI Form Checker" project.
-  - Implemented various pose detection algorithms for three distinct exercises: dumbbell curl, squat, and squat with a barbell.
-  - Added feedback mechanisms for correct and incorrect form detection in each exercise.
-  - Implemented progress bar and repetition counter for the squat and squat with a barbell exercises.
-  - Created necessary utility functions to analyze body positions like calculating angles and distances between landmarks.
+  - Creating a machine learning-based form checker for squat exercise using OpenCV and a custom poseDetector class, which includes finding and drawing the skeleton, calculating angles, and providing feedback on the form.
+  - Creating a form checker for a dumbbell curl exercise, calculating the angle of the arm, and providing feedback based on the angle.
+  - Adding a progress bar to display the completion percentage for both exercises.
+  - Adding functionality to display the frame rate (FPS) of the video feed to show how smoothly the AI model is running.
 
 - 🛠 In Progress:
-  - Refining the pose detection algorithms for better accuracy and performance, particularly for the dumbbell curl exercise.
-  - Integrating the completed pose detection algorithms with the main application "AI Form Checker" for a more seamless user experience.
-  - Adding a user interface to allow users to easily switch between exercises and start/stop the pose detection.
+  - Currently working on a love detection exercise using image processing and OpenCV to check if the user is expressing love (based on a raised thumb) or not.
 
 - 🔜 Planned or Upcoming Tasks:
-  - Add additional exercises to the "AI Form Checker" application.
-  - Implement pose detection for users performing the exercises without a webcam, potentially using a Kinect sensor or other alternatives.
-  - Explore possibilities to integrate machine learning models to improve pose detection accuracy and real-time feedback.
+  - There are plans to expand the form checker to include more exercises and improve the accuracy and responsiveness of the pose detection.
 
 - 📋 Notes or Observations:
-  - Some minor issues regarding disciplined execution of exercises were observed during development. These issues will be addressed in future iterations.
-  - The current pose detection algorithms may require further optimization and tuning to achieve optimal performance, especially for realistic user environments.
+  - It appears that the feedback mechanism for the love detection exercise is not yet complete, as only basic color indication is being shown, and the implementation for checking if the user is expressing love needs to be added later. Also, the 'pTime' variable for storing the previous frame time is overwritten in the first while loop of `ilove.py`, which might affect the FPS calculation in that file. The developer may want to separate the FPS calculation into a separate function or add a way to track the number of iterations instead.
