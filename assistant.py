@@ -1,9 +1,12 @@
+from flask import Flask, request, jsonify
 from config import api_key
 import openai
 from git import Repo
 from datetime import datetime, timedelta
 import os
 import sys
+
+app = Flask(__name__)
 
 OPENROUTER_API_KEY = api_key
 client = openai.OpenAI(
@@ -42,16 +45,6 @@ def format_for_prompt(commits):
         prompt += "-" * 40 + "\n"
     return prompt
 
-# def get_summary_from_gpt(prompt_text):
-#     response = client.chat.completions.create(
-#         model="mistralai/mistral-7b-instruct",
-#         messages=[
-#             {"role": "system", "content": "You are an assistant that summarizes developer Git activity into a weekly update."},
-#             {"role": "user", "content": prompt_text}
-#         ]
-#     )
-#     return response.choices[0].message.content
-
 def get_summary_from_gpt(prompt_text):
     instructions = (
         "You are an assistant that summarizes a developer's Git activity.\n"
@@ -78,22 +71,43 @@ def save_summary_to_file(summary, filename="weekly_summary.md"):
     with open(filename, "w") as f:
         f.write(summary)
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python ai_dev_summary_tool.py /path/to/your/repo")
-        sys.exit(1)
+# def main():
+#     if len(sys.argv) < 2:
+#         print("Usage: python ai_dev_summary_tool.py /path/to/your/repo")
+#         sys.exit(1)
 
-    repo_path = sys.argv[1]
-    commits = get_commit_logs(repo_path)
-    prompt = format_for_prompt(commits)
-    print("\n🧾 Prompt sent to the AI:\n")
-    print(prompt)
-    summary = get_summary_from_gpt(prompt)
+#     repo_path = sys.argv[1]
+#     commits = get_commit_logs(repo_path)
+#     prompt = format_for_prompt(commits)
+#     print("\n🧾 Prompt sent to the AI:\n")
+#     print(prompt)
+#     summary = get_summary_from_gpt(prompt)
 
-    print("\n\U0001F4DD Weekly Developer Summary:\n")
-    print(summary)
-    save_summary_to_file(summary)
+#     print("\n\U0001F4DD Weekly Developer Summary:\n")
+#     print(summary)
+#     save_summary_to_file(summary)
+
+# if __name__ == "__main__":
+#     main()
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/generate", methods=["POST"])
+def generate():
+    data = request.get_json()
+    repo_path = data.get("repo_path")
+
+    try:
+        commits = get_commit_logs(repo_path)
+        prompt = format_for_prompt(commits)
+        summary = get_summary_from_gpt(prompt)
+        save_summary_to_file(summary)
+        return jsonify({"summary": summary})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
 
