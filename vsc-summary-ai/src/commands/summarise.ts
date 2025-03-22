@@ -99,5 +99,6 @@ export async function summarise() {
         });
     } else {
         console.log('You have exited VSC Summary AI.');
+        return;
     }
 }
