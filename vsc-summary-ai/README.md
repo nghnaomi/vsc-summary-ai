@@ -1,65 +1,22 @@
 # vsc-summary-ai README
 
-VSC Summary AI is an AI designed to track the progress of a project by providing a summary after each coding session as per the user's request.
+VSC Summary AI is a Visual Studio Code extension designed to enhance developers' productivity by tracking the progress of a coding project. After each coding session, it generates a concise summary of the changes made, helping developers maintain clarity and continuity across sessions.
 
 ## Features
 
-placeholder
+Session Summary Generation
+ After every coding session, VSC Summary AI provides a summary of the changes made, including files modified, functions added or updated, and key logic changes.
 
-## Requirements
+Custom Summary Requests
+ Developers can request summaries at any point during their coding session through VSCode’s command palette.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Instructions
 
-## Extension Settings
+Mac: Shift+Cmd+P and search for VSC Summary AI
+Other: Shift-Ctrl+P and search for VSC Summary AI
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Release Notes (V0.0.5)
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Fixed bugs.
 
 **Enjoy!**
