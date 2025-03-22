@@ -1,16 +1,10 @@
 # vsc-summary-ai README
 
-This is the README for your extension "vsc-summary-ai". After writing up a brief description, we recommend including the following sections.
+VSC Summary AI is an AI designed to track the progress of a project by providing a summary after each coding session as per the user's request.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+to be edited
 
 ## Requirements
 
