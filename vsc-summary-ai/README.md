@@ -19,4 +19,8 @@ Other: Shift-Ctrl+P and search for VSC Summary AI
 
 Fixed bugs.
 
+## Known Issues
+
+The repository must be locally cloned for the extension to work.
+
 **Enjoy!**
