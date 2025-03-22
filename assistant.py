@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from config import api_key
 import openai
 from git import Repo
@@ -96,17 +96,21 @@ def index():
 
 @app.route("/generate", methods=["POST"])
 def generate():
-    data = request.get_json()
-    repo_path = data.get("repo_path")
-
     try:
+        data = request.get_json()
+        repo_path = data.get("repo_path")
+
+        if not repo_path:
+            return jsonify({"error": "No repo_path provided"}), 400
+
         commits = get_commit_logs(repo_path)
         prompt = format_for_prompt(commits)
         summary = get_summary_from_gpt(prompt)
-        save_summary_to_file(summary)
+
         return jsonify({"summary": summary})
+
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
