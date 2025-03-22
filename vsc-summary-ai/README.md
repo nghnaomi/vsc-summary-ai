@@ -15,7 +15,7 @@ Custom Summary Requests
 Mac: Shift+Cmd+P and search for VSC Summary AI
 Other: Shift-Ctrl+P and search for VSC Summary AI
 
-## Release Notes (V0.0.5)
+## Release Notes (V0.0.6)
 
 Fixed bugs.
 
