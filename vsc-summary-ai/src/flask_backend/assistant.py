@@ -8,6 +8,14 @@ import sys
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return render_template('index.json')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 OPENROUTER_API_KEY = api_key
 client = openai.OpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -92,7 +100,7 @@ def save_summary_to_file(summary, filename="weekly_summary.md"):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.json")
 
 @app.route("/generate", methods=["POST"])
 def generate():
@@ -113,5 +121,5 @@ def generate():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 

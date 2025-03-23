@@ -23,6 +23,12 @@ function startFlaskBackend() {
     console.log("🚀 Flask backend started.");
 }
 
+function checkBackendStatus(): Promise<boolean> {
+    return fetch("http://localhost:5000", { method: 'GET' })
+        .then(response  => response.ok)
+        .catch(() => false);
+}
+
 export async function summarise() {
     const outputChannel = vscode.window.createOutputChannel("VSC Summary AI");
 
@@ -55,7 +61,7 @@ export async function summarise() {
                         'Try Again', 'Cancel'
                     );
                     if (retry === 'Cancel') {
-                        return;
+                        break;
                     }
                 }
             }
@@ -73,7 +79,13 @@ export async function summarise() {
 
         startFlaskBackend();
 
-        fetch("http://127.0.0.1:5000/generate", {
+        const flaskIsRunning = await checkBackendStatus();
+        if (!flaskIsRunning) {
+            vscode.window.showErrorMessage("Flask backend is not running.");
+            return;
+        }
+
+        fetch("http://localhost:5000/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

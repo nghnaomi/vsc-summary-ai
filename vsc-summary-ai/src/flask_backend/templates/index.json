@@ -1,0 +1,17 @@
+{
+    "status": "success",
+    "message": "Summary generated successfully",
+    "data": {
+        "repository": {
+            "path": "/path/to/repository",
+            "name": "repository-name",
+            "description": "A short description of the repository"
+        },
+        "summary": {
+            "files_analyzed": 15,
+            "lines_of_code": 1423,
+            "functions_found": 72,
+            "classes_found": 9
+        }
+    }
+}
