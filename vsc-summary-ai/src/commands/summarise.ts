@@ -24,9 +24,25 @@ function startFlaskBackend() {
 }
 
 function checkBackendStatus(): Promise<boolean> {
-    return fetch("http://localhost:5000", { method: 'GET' })
+    return fetch("http://127.0.0.1:5001", { method: 'GET' })
         .then(response  => response.ok)
         .catch(() => false);
+}
+
+function waitForFlaskReady(retries = 10, delay = 500): Promise<boolean> {
+    return new Promise((resolve) => {
+        const attempt = async (count: number) => {
+            const running = await checkBackendStatus();
+            if (running) {
+                resolve(true);
+            } else if (count > 0) {
+                setTimeout(() => attempt(count - 1), delay);
+            } else {
+                resolve(false);
+            }
+        };
+        attempt(retries);
+    });
 }
 
 export async function summarise() {
@@ -79,13 +95,13 @@ export async function summarise() {
 
         startFlaskBackend();
 
-        const flaskIsRunning = await checkBackendStatus();
+        const flaskIsRunning = await waitForFlaskReady();
         if (!flaskIsRunning) {
             vscode.window.showErrorMessage("Flask backend is not running.");
             return;
         }
 
-        fetch("http://localhost:5000/generate", {
+        fetch("http://127.0.0.1:5001/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
