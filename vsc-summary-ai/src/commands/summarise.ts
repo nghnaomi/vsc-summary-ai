@@ -11,12 +11,13 @@ function startFlaskBackend() {
         return;
     }
 
-    const scriptPath = path.join(__dirname, "..", "..", "assistant.py");
+    const scriptPath = path.join(__dirname, "..", "flask_backend", "assistant.py");
+    const pythonPath = path.join(__dirname, "..", "..", ".venv", "bin", "python");
 
-    flaskProcess = cp.spawn("python", [scriptPath], {
+    flaskProcess = cp.spawn(pythonPath, [scriptPath], {
         cwd: path.dirname(scriptPath),
         detached: true,
-        stdio: "ignore"
+        stdio: "inherit"
     });
 
     flaskProcess.unref();
